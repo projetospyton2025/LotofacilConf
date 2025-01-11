@@ -1,0 +1,52 @@
+Linguagem de programação: Python
+Interface web: Flask
+
+
+Gostaria de fazer um conferidor para a lotofacil
+onde:
+o usuario possa marcar e destacar as dezenas jogadas
+arrartar e soltar as dezenas sorteadas.. separadas por espeço 
+que tenha um imput para ele digitar o inicio da conferencia e outro imput com o ultimo concurso..
+que tenha a opção de filtrar apenas por jogos premiados.. 
+um botão conferir...
+uma seção com o resumo dos acerto (onde ele possa clicar e ir para os resultados e os mesmos ficarem destacado as dezenas acertadas.. )
+que traga tbm os valores em reais quando acertado.. 
+
+
+Requisitos adicionais
+Css.. 
+Configure a pagina centralizada e deixe ajustado tbm para smartwatch, tablets, desktop e celulares
+Traga cores suaves voltado para lotomania com bordas com sombras suaves
+DISPONIBILIZE ESTRUTURA DE PASTAS E O ONDE COLOCAR O CONTEUDO EM CADA ARQUIVO
+OBSERVE TUDO E DEIXE TUDO FUNCIONAL...TRAGA UM EXEMPLO 
+API É ESTA.. EXEMPLO
+https://loteriascaixa-api.herokuapp.com/api
+https://loteriascaixa-api.herokuapp.com/api/megasena/latest
+
+
+
+
+lotofacil_checker/
+├── static/
+│   ├── css/
+│   │   └── style.css
+│   └── js/
+│       └── main.js
+├── templates/
+│   └── index.html
+├── app.py
+└── requirements.txt
+
+# Criar diretórios
+New-Item -ItemType Directory -Path static/css
+New-Item -ItemType Directory -Path static/js
+New-Item -ItemType Directory -Path templates
+
+# Criar arquivos
+New-Item -ItemType File -Path static/css/style.css
+New-Item -ItemType File -Path static/js/main.js
+New-Item -ItemType File -Path templates/index.html
+New-Item -ItemType File -Path app.py
+New-Item -ItemType File -Path requirements.txt
+
+

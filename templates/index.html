@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conferidor Lotofácil</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Conferidor Lotofácil</h1>
+        
+        <div class="numbers-grid">
+            <!-- Números de 1 a 25 -->
+            {% for i in range(1, 26) %}
+            <div class="number" data-number="{{ i }}" draggable="true">{{ i }}</div>
+            {% endfor %}
+        </div>
+
+        <div class="selected-numbers">
+            <p>Dezenas selecionadas: <span id="selected-count">0</span></p>
+            <div id="selected-numbers-display"></div>
+        </div>
+
+        <div class="controls">
+            <div class="input-group">
+                <label for="inicio">Concurso Inicial:</label>
+                <input type="number" id="inicio" min="1">
+            </div>
+            <div class="input-group">
+                <label for="fim">Concurso Final:</label>
+                <input type="number" id="fim" min="1">
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="apenas-premiados">
+                <label for="apenas-premiados">Somente Premiados</label>
+            </div>
+            <button id="conferir" class="btn-conferir">Conferir</button>
+        </div>
+
+        <div class="resumo">
+            <h2>Resumo de Acertos</h2>
+            <div class="acertos-grid">
+                <div class="acerto-box" data-acertos="11">
+                    <h3>11 Acertos</h3>
+                    <p class="count">0</p>
+                </div>
+                <div class="acerto-box" data-acertos="12">
+                    <h3>12 Acertos</h3>
+                    <p class="count">0</p>
+                </div>
+                <div class="acerto-box" data-acertos="13">
+                    <h3>13 Acertos</h3>
+                    <p class="count">0</p>
+                </div>
+                <div class="acerto-box" data-acertos="14">
+                    <h3>14 Acertos</h3>
+                    <p class="count">0</p>
+                </div>
+                <div class="acerto-box" data-acertos="15">
+                    <h3>15 Acertos</h3>
+                    <p class="count">0</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="resultados">
+            <h2>Resultados</h2>
+            <div id="resultados-list"></div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
