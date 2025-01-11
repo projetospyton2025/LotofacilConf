@@ -61,6 +61,13 @@ def conferir():
         'resultados': resultados,
         'resumo': resumo
     })
+    
 
-if __name__ == '__main__':
-    app.run(debug=True)
+#if __name__ == '__main__':
+#    app.run(debug=True)
+    
+    
+    # Obtém a porta do ambiente ou usa 5000 como padrão
+    port = int(os.environ.get("PORT", 5000))
+    # Executa o servidor
+    app.run(host="0.0.0.0", port=port, debug=False)
