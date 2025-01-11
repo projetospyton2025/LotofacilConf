@@ -4,6 +4,14 @@ from datetime import datetime
 
 app = Flask(__name__)
 
+def get_latest_concurso():
+    try:
+        response = requests.get('https://loteriascaixa-api.herokuapp.com/api/lotofacil/latest')
+        data = response.json()
+        return data['concurso']
+    except:
+        return None
+
 def get_lotofacil_result(concurso):
     try:
         response = requests.get(f'https://loteriascaixa-api.herokuapp.com/api/lotofacil/{concurso}')
@@ -13,14 +21,15 @@ def get_lotofacil_result(concurso):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    ultimo_concurso = get_latest_concurso()
+    return render_template('index.html', ultimo_concurso=ultimo_concurso)
 
 @app.route('/conferir', methods=['POST'])
 def conferir():
     data = request.json
     inicio = int(data['inicio'])
     fim = int(data['fim'])
-    numeros_jogados = data['numerosJogados']
+    numeros_jogados = [str(num).zfill(2) for num in data['numerosJogados']]  # Convertendo para formato "01", "02", etc
     apenas_premiados = data['apenasPremiados']
     
     resultados = []
@@ -29,25 +38,23 @@ def conferir():
     for concurso in range(inicio, fim + 1):
         resultado = get_lotofacil_result(concurso)
         if resultado:
-            dezenas_sorteadas = [int(n) for n in resultado['dezenas']]
+            dezenas_sorteadas = resultado['dezenas']  # Já vem no formato correto da API
             acertos = len(set(numeros_jogados) & set(dezenas_sorteadas))
             
             if acertos >= 11:
-                if apenas_premiados:
+                premio = 0
+                for premiacao in resultado['premiacoes']:
+                    if premiacao['descricao'] == f'{acertos} acertos':
+                        premio = premiacao['valorPremio']
+                        break
+                
+                if not apenas_premiados or premio > 0:
                     resumo[acertos] += 1
                     resultados.append({
                         'concurso': concurso,
                         'dezenas': dezenas_sorteadas,
                         'acertos': acertos,
-                        'premio': resultado['premiacoes'][15-acertos]['premio'] if acertos >= 11 else 0
-                    })
-                else:
-                    resumo[acertos] += 1
-                    resultados.append({
-                        'concurso': concurso,
-                        'dezenas': dezenas_sorteadas,
-                        'acertos': acertos,
-                        'premio': resultado['premiacoes'][15-acertos]['premio'] if acertos >= 11 else 0
+                        'premio': premio
                     })
     
     return jsonify({
