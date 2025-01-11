@@ -1,1 +1,1 @@
-# -LotofacilConf
+# LotofacilConf
