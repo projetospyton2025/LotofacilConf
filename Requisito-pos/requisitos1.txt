@@ -1,8 +1,0 @@
-Melhorias e esperiencia do usuario
-1º Somar os valores em Resumo de Acertos (vide foto onde está escrito - VALOR EM REAIS individual - adicione em um lugar o valor total de ganhos para UM TOTAL DE GANHOS..)
-ou seja colocar os valores individual e depois fazer um resumo do valor ganho em tantos concursos.. 
-
-2º Arrumar a barra de progresso que deve ser atualizada conforme vai sendo consultados os concursos.. (vide foto onde esta escrito PROGRESSO EM TEMPO REAL)
-
-3º 
-
